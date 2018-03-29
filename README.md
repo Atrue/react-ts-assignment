@@ -21,24 +21,20 @@ You can use either inline styles, css stylesheets, or whatever css-in-js library
 
 ## Functionality
 
-* When the user clicks on the search area, it should show a list of suggestions just like shown in the design [here](https://zpl.io/aRMl0ZK). The design has excess whitespace in the suggestions area, do not leave that much space, just respect the paddings and margins and make it only as tall so the contents fit in.
-* When user starts typing, you should search in two separate databases. One is the location database that has the location names and `id`s. The other is the `Content` table that has the photo names and location ids. You should show results on the screen as shown in the design [here](https://zpl.io/a7wXxPY). The thumbnail should just be a dummy photo, location name should be displayed along with the total number of matches. "Location" text should be there fixed, since this assignment doesn't include other types of searches.
-* The same thing regarding the extra whitespace in the design applies for the search results as well.
-* Sample databases are sent via e-mail. Please dump them to IndexedDB or any other similar web database.
+* When the user clicks on the search area, it should show a list of suggestions just like shown in the design [here](https://zpl.io/aRMl0ZK). The design has excess whitespace in the suggestions area, do not leave that much space, just respect the paddings and margins and make it only as tall so the contents fit in
+* When user starts typing, you should search in two separate databases. One is the location database that has the location names and `id`s. The other is the `Content` table that has the photo names and location ids. You should show results on the screen as shown in the design [here](https://zpl.io/a7wXxPY). The thumbnail should just be a dummy photo, location name should be displayed along with the total number of matches. "Location" text should be there fixed, since this assignment doesn't include other types of searches
+* The same thing regarding the extra whitespace in the design applies for the search results as well
+* Sample databases are sent via e-mail. Please dump them to IndexedDB or any other similar web database
 
 ## Other Tidbits
 
-* When you go over the assignment please email the person who sent you this with an acknowledgment and an estimated time frame for delivery.
-
-* If you need clarifications or any other questions, please leave a comment under this gist.
-
-* You will need access to Zeplin, please sign up for it and send your username, so we can give you access.
-
-## Extra
-
+* When you go over the assignment please email the person who sent you this with an acknowledgment and an estimated time frame for delivery
+* If you need clarifications or any other questions, please e-mail us
+* You will need access to Zeplin, please sign up for it and send your username, so we can give you access
+* Please fork this repository and create a PR when you're done
 * Comments are your friend
-* Take into the account the organization and structure of what you are building.
+* Take into the account the organization and structure of what you are building
   Good points if your code is easy to integrate into a big codebase
-* Break up your components by functionality or if they get too large to manage.
+* Break up your components by functionality or if they get too large to manage
   Right now all is into a single main file (App.tsx) but it doesn't need to be that way
 * Have fun :smile:
