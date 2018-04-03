@@ -5,103 +5,69 @@ import Face from '../images/Face';
 import Location from '../images/Location';
 import Pencil from '../images/Pencil';
 import Date from '../images/Date';
-import Pin from '../images/Pin';
 import DefaultIcon from '../images/Icon';
-import { search as searchAction } from '../actions';
+import IStoreState, { ILocation } from "../store/IStoreState";
 
-interface NavigationProps {
+interface NavigationSearchProps {
+  suggestions: IStoreState['suggestions'],
+  onSearch: (query: string) => void
 }
-interface Location {
-  name: string,
-  country: string,
-  count: number
-}
-interface User {
-  user: string,
-  category: string,
-  count: number
-}
-interface NavigationState {
+
+interface NavigationSearchState {
   active: boolean,
   search: string,
-  suggestions: {
-    locations: Location[],
-    users: User[]
-  }
 }
 
-class Navigation extends React.Component<NavigationProps, NavigationState> {
+class NavigationSearch extends React.Component<NavigationSearchProps, NavigationSearchState> {
   state = {
     active: false,
     search: '',
-    suggestions: {
-      locations: [],
-      users: []
-    }
   };
 
   async search(e: any) {
-    const search = e.target.value;
+    const search = e.target.value || '';
+    this.setState({search});
     if (search) {
-      const suggestions = await searchAction(search);
-      this.setState({suggestions, search});
-    } else {
-      this.clearResults();
+      this.props.onSearch(search);
     }
   }
 
-  clearResults() {
+  clear() {
     this.setState({
       search: '',
-      suggestions: {
-        locations: [],
-        users: []
-      }
     })
   }
 
   render() {
-    const { active, suggestions, search } = this.state;
+    const { active, search } = this.state;
+    const suggestions = this.props.suggestions;
 
     return (
       <div className="search-bar">
         <div className="search-icon"><Search/></div>
         <input
           className="search"
+          value={search}
           onChange={(e) => this.search(e)}
           onFocus={() => this.setState({active: true})}
           onBlur={() => this.setState({active: false})}
         />
-        <div className="clear-search"><Clear/></div>
+        <div className="clear-search"><div className="clear-btn" onClick={() => this.clear()}><Clear/></div></div>
         {active && (
           <div className="search-suggestions">
             {search ?
               <div className="suggestions">
                 <ul>
-                  {suggestions.locations.map((location: Location, i) => (
+                  {suggestions.data.map((location: ILocation, i: number) => (
                     <li key={'l' + i}>
                       <div className="suggestion">
                         <div className="suggestion-image">
-                         <Pin/>
+                         <DefaultIcon/>
                         </div>
                         <div className="suggestion-info">
-                          <div className="title">{location.name}</div>
-                          <div className="info">{location.country}</div>
+                          <div className="title">{location.name}, {location.country_id}</div>
+                          <div className="info">Location</div>
                           <div className="count">{location.count}</div>
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                  {suggestions.users.map((user: User, i) => (
-                    <li key={'u' + i}>
-                      <div className="suggestion">
-                        <div className="suggestion-image">
-                          <DefaultIcon/>
-                        </div>
-                        <div className="suggestion-info">
-                          <div className="title">{user.user}</div>
-                          <div className="info">{user.category}</div>
-                          <div className="count">{user.count}</div>
                         </div>
                       </div>
                     </li>
@@ -125,4 +91,4 @@ class Navigation extends React.Component<NavigationProps, NavigationState> {
   }
 }
 
-export default Navigation;
+export default NavigationSearch;

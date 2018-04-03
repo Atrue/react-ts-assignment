@@ -1,9 +1,17 @@
 import * as React from "react";
+import connectWith from '../utils/connectWith';
 import NavigationSearch from './NavigationSearch';
+import IStoreState from '../store/IStoreState';
+import { search } from '../actions';
 import Left from '../images/Left';
 import Right from '../images/Right';
 
-class Navigation extends React.Component {
+interface NavigationProps {
+  suggestions: IStoreState['suggestions'],
+  search: (query: string) => void
+}
+
+class Navigation extends React.Component<NavigationProps, {}> {
   render() {
     return (
       <div className="head-bar">
@@ -17,11 +25,21 @@ class Navigation extends React.Component {
             </div>
           </div>
           <span className="head-title">Photos</span>
-          <NavigationSearch/>
+          <NavigationSearch suggestions={this.props.suggestions} onSearch={this.props.search}/>
         </div>
       </div>
     );
   }
 }
 
-export default Navigation;
+export default connectWith(
+  {
+    props: (state: IStoreState) => ({
+      suggestions: state.suggestions
+    }),
+    actions: {
+      search
+    }
+  },
+  Navigation
+);

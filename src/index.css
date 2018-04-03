@@ -1,4 +1,5 @@
 @font-face { font-family: 'SFUIText';  src: local('SFUIText'), url('./fonts/SFUIText.woff') format('woff'); }
+@font-face { font-family: 'Brown';  src: local('Brown'), url('./fonts/Brown.otf') format('opentype'); }
 
 body {
   padding: 0;
@@ -25,13 +26,13 @@ body {
   display: flex;
 }
 .head-bar .head-title {
-  font-family: Brown, sans-serif;
+  font-family: Brown, serif;
   font-size: 20px;
   letter-spacing: 0.2px;
   color: #2e343b;
   vertical-align: middle;
   margin-left: 32px;
-  line-height: 1.5em;
+  line-height: 1.3em;
 }
 .head-bar .search-bar {
   display: flex;
@@ -67,10 +68,13 @@ body {
   margin-left: 12px;
   fill: #96a1ae;
 }
-.search-bar .clear-search > svg {
+.search-bar .clear-search > .clear-btn {
   position: absolute;
   right: 12px;
+  top: 9px;
   cursor: pointer;
+}
+.search-bar .clear-search > .clear-btn > svg {
   width: 14px;
   height: 100%;
   margin-left: 12px;
@@ -86,6 +90,7 @@ body {
   background-color: #ffffff;
   border: solid 1px #96a1ae0e;
   font-family: SFUIText, sans-serif;
+  overflow: hidden;
 }
 .search-bar .search-suggestions .empty-hint {
   font-size: 11px;
@@ -131,12 +136,16 @@ body {
 .suggestions .suggestion-info {
   margin-left: 12px;
   position: relative;
-  width: 100%
+  width: 100%;
+  overflow: hidden;
 }
 .suggestions .suggestion-info > .title {
   font-size: 14px;
   letter-spacing: 0.2px;
   color: #2e353b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .suggestions .suggestion-info > .info {
   font-size: 11px;
@@ -169,6 +178,7 @@ body {
   cursor: pointer;
   margin-right: 6px;
   vertical-align: middle;
+  text-align: center;
 }
 .nav-button svg {
   fill: none;
